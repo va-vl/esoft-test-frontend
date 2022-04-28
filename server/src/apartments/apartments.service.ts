@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { ApartmentsRepository } from './apartments.repository';
 
 @Injectable()
 export class ApartmentsService {
-  get() {
-    return 'Apartments';
+  constructor(private readonly apartmentsRepository: ApartmentsRepository) {}
+
+  getAll() {
+    return this.apartmentsRepository.getAll();
   }
 }
