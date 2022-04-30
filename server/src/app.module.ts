@@ -1,12 +1,30 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+//
 import { ApartmentsModule } from './apartments/apartments.module';
+import { Apartment } from './entities/apartment.entity';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), ApartmentsModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      expandVariables: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => {
+        return {
+          type: 'postgres',
+          url: configService.get('DB_URL'),
+          entities: [Apartment],
+          synchronize: false,
+          logging: false,
+        };
+      },
+      inject: [ConfigService],
+    }),
+    ApartmentsModule,
+  ],
 })
 export class AppModule {}
