@@ -16,7 +16,7 @@ export class Apartment {
   pos_on_floor: number;
 
   @ApiProperty()
-  @Column('numeric')
+  @Column('real')
   price: number;
 
   @ApiProperty()
@@ -24,15 +24,15 @@ export class Apartment {
   rooms: number;
 
   @ApiProperty()
-  @Column('numeric')
+  @Column('real')
   area_total: number;
 
   @ApiProperty()
-  @Column('numeric')
+  @Column('real')
   area_kitchen: number;
 
   @ApiProperty()
-  @Column('numeric')
+  @Column('real')
   area_live: number;
 
   @ApiProperty()

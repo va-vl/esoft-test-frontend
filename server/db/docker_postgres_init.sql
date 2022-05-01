@@ -2,11 +2,11 @@ CREATE TABLE IF NOT EXISTS Apartment(
    id           INTEGER  NOT NULL PRIMARY KEY 
   ,floor        INTEGER  NOT NULL
   ,pos_on_floor INTEGER  NOT NULL
-  ,price        NUMERIC(20,1) NOT NULL
+  ,price        REAL  NOT NULL
   ,rooms        INTEGER  NOT NULL
-  ,area_total   NUMERIC(20,1) NOT NULL
-  ,area_kitchen NUMERIC(20,1) NOT NULL
-  ,area_live    NUMERIC(20,1) NOT NULL
+  ,area_total   REAL  NOT NULL
+  ,area_kitchen REAL NOT NULL
+  ,area_live    REAL NOT NULL
   ,layout_image VARCHAR NOT NULL
 );
 
