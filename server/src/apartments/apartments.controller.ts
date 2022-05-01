@@ -20,6 +20,7 @@ import {
 import { Apartment } from 'src/entities/apartment.entity';
 import { ApartmentsService } from './apartments.service';
 import { FilterApartmentsDTO } from './dto/filter-apartments.dto';
+import { FilteredApartmentDTO } from './dto/filtered-apartmen.dto';
 
 @Controller('apartments')
 @UsePipes(
@@ -28,12 +29,12 @@ import { FilterApartmentsDTO } from './dto/filter-apartments.dto';
   }),
 )
 @ApiTags('apartments')
-@ApiExtraModels(Apartment)
 export class ApartmentsController {
   constructor(private readonly apartmentsService: ApartmentsService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
+  @ApiExtraModels(FilteredApartmentDTO)
   @ApiOkResponse({
     description: 'Отфильтрованные квартиры',
     content: {
@@ -49,7 +50,7 @@ export class ApartmentsController {
             data: {
               type: 'array',
               items: {
-                $ref: getSchemaPath(Apartment),
+                $ref: getSchemaPath(FilteredApartmentDTO),
               },
             },
           },
@@ -73,6 +74,7 @@ export class ApartmentsController {
     },
     description: 'id квартиры',
   })
+  @ApiExtraModels(Apartment)
   @ApiOkResponse({
     description: 'Найденная квартира',
     content: {
@@ -86,7 +88,7 @@ export class ApartmentsController {
   @ApiBadRequestResponse({
     description: 'Некорректный запрос',
   })
-  getApartment(@Param('id', ParseIntPipe) id: number) {
+  getApartmentById(@Param('id', ParseIntPipe) id: number) {
     return this.apartmentsService.getApartmentById(id);
   }
 }

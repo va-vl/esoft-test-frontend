@@ -1,0 +1,22 @@
+.button {
+  display: block;
+  padding: 0.5em;
+  border-radius: 0.25em;
+  border: none;
+
+  background-color: steelblue;
+  color: white;
+
+  transition: transform 100ms ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+  background-color: rgb(49, 103, 146);
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: rgb(34, 76, 111);
+  transform: scale(0.95);
+}

@@ -45,6 +45,7 @@ export class ApartmentsService {
       order: {
         [sort_by]: sort_order,
       },
+      select: ['id', 'rooms', 'area_total', 'layout_image'],
       take: ITEMS_PER_PAGE,
       skip: (page - 1) * ITEMS_PER_PAGE,
     });
@@ -56,7 +57,7 @@ export class ApartmentsService {
     };
   }
 
-  getApartmentById(id: number) {
+  async getApartmentById(id: number) {
     return this.apartmentsRepository.findOne(id);
   }
 

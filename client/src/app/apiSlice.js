@@ -7,7 +7,10 @@ export const apiSlice = createApi({
   }),
   endpoints: (build) => ({
     filterApartments: build.query({
-      query: () => '/apartments',
+      query: (params) => ({
+        url: '/apartments',
+        params,
+      }),
     }),
     getApartment: build.query({
       query: (id) => `/apartments:${id}`,
