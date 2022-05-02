@@ -1,0 +1,22 @@
+@use '../../style/variables.scss' as *;
+
+.group {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend {
+  padding-bottom: 0.5em;
+}
+
+.content {
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid $color-border-checkbox;
+}
+
+.content > *:not(:last-child) {
+  border-right: 1px solid $color-border-checkbox;
+}

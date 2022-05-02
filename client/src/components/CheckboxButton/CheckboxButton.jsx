@@ -1,26 +1,38 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 //
-import styles from './CheckboxButton.module.css';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden';
+import styles from './CheckboxButton.module.scss';
 
-export const CheckboxButton = ({ id, label, value, name }) => (
-  <p className={styles.checkbox}>
-    <label htmlFor={id} className={styles.label}>
+export const CheckboxButton = React.memo(
+  ({ id, label, value, name, onChange, checked }) => (
+    <label
+      htmlFor={id}
+      className={clsx(styles.checkbox, checked && styles.checkbox_checked)}
+    >
       {label}
+      <VisuallyHidden>
+        <input
+          id={id}
+          value={value}
+          name={name}
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+        />
+      </VisuallyHidden>
     </label>
-    <input
-      id={id}
-      value={value}
-      name={name}
-      type="checkbox"
-      className={styles.input}
-    />
-  </p>
+  )
 );
+
+CheckboxButton.displayName = 'CheckboxButton';
 
 CheckboxButton.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

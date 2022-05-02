@@ -1,17 +1,13 @@
 import * as React from 'react';
 //
-import { SearchPanel } from '@features/search';
-import styles from './Home.module.css';
+import { SearchMenu } from '@features/search';
+import styles from './Home.module.scss';
 
 const HomePage = () => (
-  <>
-    <section className={styles.hero}>
-      <h2 className={styles.hero_heading}>Подобрать квартиру</h2>
-    </section>
-    <div>
-      <SearchPanel />
-    </div>
-  </>
+  <div className={styles.home}>
+    <h2 className={styles.heading}>Подобрать квартиру</h2>
+    <SearchMenu />
+  </div>
 );
 
 export default HomePage;

@@ -1,0 +1,1 @@
+export const MAX_INPUT_VALUE = 1_000_000_000_000;

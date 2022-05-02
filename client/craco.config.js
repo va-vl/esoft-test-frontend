@@ -14,6 +14,8 @@ module.exports = {
           '@containers': './containers',
           '@pages': './pages',
           '@features': './features',
+          '@service': './service',
+          '@constants': './constants',
         },
       },
     },

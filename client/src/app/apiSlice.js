@@ -6,11 +6,8 @@ export const apiSlice = createApi({
     baseUrl: process.env.REACT_APP_API_URL,
   }),
   endpoints: (build) => ({
-    filterApartments: build.query({
-      query: (params) => ({
-        url: '/apartments',
-        params,
-      }),
+    searchApartments: build.query({
+      query: ({ queryString }) => `/apartments?${queryString}`,
     }),
     getApartment: build.query({
       query: (id) => `/apartments:${id}`,
@@ -18,4 +15,10 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useFilterApartmentsQuery, useGetApartmentQuery } = apiSlice;
+export const {
+  useSearchApartmentsQuery,
+  useGetApartmentQuery,
+  endpoints: {
+    searchApartments: { useLazyQuery: useLazySearchApartmentsQuery },
+  },
+} = apiSlice;

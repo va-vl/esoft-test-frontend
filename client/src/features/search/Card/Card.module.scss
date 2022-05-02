@@ -1,0 +1,9 @@
+@use '../../../style/variables.scss' as *;
+
+.card {
+  width: 100%;
+  border-radius: 0.5em;
+  overflow: hidden;
+  background-color: $color-background;
+  box-shadow: 0 1em 2em -1em rgba(black, 0.5);
+}

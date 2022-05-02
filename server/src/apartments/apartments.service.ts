@@ -21,7 +21,7 @@ export class ApartmentsService {
   ) {}
 
   async getAll(filterApartmentsDTO: FilterApartmentsDTO) {
-    const { sort_by, sort_order, page } = filterApartmentsDTO;
+    const { sort, page } = filterApartmentsDTO;
 
     const where: FindOneOptions<Apartment>['where'] = {};
 
@@ -40,12 +40,14 @@ export class ApartmentsService {
     );
     this.assignBoundariesToWhereObject(where, 'area_live', filterApartmentsDTO);
 
+    const [sort_by, sort_order] = sort.split('-');
+
     const [result, total] = await this.apartmentsRepository.findAndCount({
       where,
       order: {
         [sort_by]: sort_order,
       },
-      select: ['id', 'rooms', 'area_total', 'layout_image'],
+      select: ['id', 'rooms', 'area_total', 'price', 'layout_image'],
       take: ITEMS_PER_PAGE,
       skip: (page - 1) * ITEMS_PER_PAGE,
     });

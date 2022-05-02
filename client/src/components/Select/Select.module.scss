@@ -1,0 +1,10 @@
+
+.select {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+
+  .label {
+    margin-right: 0.5em;
+  }
+}

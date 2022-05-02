@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 //
-import styles from './Button.module.css';
+import { ReactComponent as Spinner } from '@assets/spinner.svg';
+import styles from './Button.module.scss';
 
 export const Button = ({
   type = 'button',
@@ -12,7 +13,8 @@ export const Button = ({
   ...props
 }) => (
   <button type={type} className={clsx(styles.button, className)} {...props}>
-    {isLoading ? 'Загрузка' : children}
+    {isLoading && <Spinner className={styles.spinner} />}
+    {children}
   </button>
 );
 

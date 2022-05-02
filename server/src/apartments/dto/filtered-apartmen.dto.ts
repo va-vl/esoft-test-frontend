@@ -6,5 +6,6 @@ export class FilteredApartmentDTO extends PickType(Apartment, [
   'id',
   'rooms',
   'area_total',
+  'price',
   'layout_image',
 ] as const) {}

@@ -9,8 +9,6 @@ import {
   Matches,
   Min,
 } from 'class-validator';
-//
-import { IsGreaterThanOrEqual } from 'src/validators/is-greater-than-or-equal.validator';
 
 export class FilterApartmentsDTO {
   @ApiProperty({
@@ -55,9 +53,6 @@ export class FilterApartmentsDTO {
   @Type(() => Number)
   @IsNumber()
   @Min(0)
-  @IsGreaterThanOrEqual('price_min', {
-    message: 'price_max must be greater than or equal price_min',
-  })
   @ApiProperty({
     title: 'price_max',
     type: Number,
@@ -84,9 +79,6 @@ export class FilterApartmentsDTO {
   @Type(() => Number)
   @IsNumber()
   @Min(0)
-  @IsGreaterThanOrEqual('area_total_min', {
-    message: 'area_total_max must be greater than or equal area_total_min',
-  })
   @ApiProperty({
     title: 'area_total_max',
     type: Number,
@@ -113,9 +105,6 @@ export class FilterApartmentsDTO {
   @Type(() => Number)
   @IsNumber()
   @Min(0)
-  @IsGreaterThanOrEqual('area_kitchen_min', {
-    message: 'area_kitchen_max must be greater than or equal area_kitchen_min',
-  })
   @ApiProperty({
     title: 'area_kitchen_max',
     type: Number,
@@ -142,9 +131,6 @@ export class FilterApartmentsDTO {
   @Type(() => Number)
   @IsNumber()
   @Min(0)
-  @IsGreaterThanOrEqual('area_live_min', {
-    message: 'area_live_max must be greater than or equal area_live_min',
-  })
   @ApiProperty({
     title: 'area_live_max',
     type: Number,
@@ -155,38 +141,28 @@ export class FilterApartmentsDTO {
   area_live_max?: number;
 
   @IsString()
-  @Matches(/(^price$)|(^rooms$)|(^area_total$)|(^area_live$)/, {
-    message: 'sort_by must be price, rooms, area_total, area_live',
+  @Matches(/(^price|^area_total)-(ASC$|DESC$)/, {
+    message:
+      'sort must be price-ASC, price-DESC, area_total-ASC, or area_total-DESC',
   })
   @ApiProperty({
-    title: 'sort_by',
-    enum: ['price', 'rooms', 'area_total', 'area_live'],
+    title: 'sort',
+    enum: ['price-ASC', 'price-DESC', 'area_total-ASC', 'area_total-DESC'],
     required: true,
     example: 'price',
     description: 'Критерий сортировки',
   })
-  sort_by: 'price' | 'rooms' | 'area_total' | 'area_live';
+  sort: 'price-ASC' | 'price-DESC' | 'area_total-ASC' | 'area_total-DESC';
 
-  @IsString()
-  @Matches(/^(A|DE)SC$/, { message: 'sort_order must be ASC or DESC' })
-  @ApiProperty({
-    title: 'sort_order',
-    enum: ['ASC', 'DESC'],
-    required: true,
-    example: 'ASC',
-    description: 'Порядок сортировки',
-  })
-  sort_order: 'ASC' | 'DESC';
-
+  @IsOptional()
   @Type(() => Number)
   @IsInt()
   @Min(1)
   @ApiProperty({
     title: 'page',
     type: Number,
-    required: true,
     minimum: 1,
     description: 'Страница',
   })
-  page: number;
+  page = 1;
 }

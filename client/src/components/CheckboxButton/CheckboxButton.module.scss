@@ -1,0 +1,22 @@
+@use '../../style/variables.scss' as *;
+
+.checkbox {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 2em;
+  min-height: 2em;
+  background-color: $color-background-checkbox;
+
+  &:hover,
+  &:focus {
+    background-color: darken($color-background-checkbox, 10%);
+    cursor: pointer;
+  }
+
+  &:active,
+  &_checked {
+    background-color: darken($color-background-checkbox, 20%);
+  }
+}

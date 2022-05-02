@@ -6,9 +6,8 @@ import { App } from '@containers';
 import HomePage from '@pages/Home/Home';
 import ApartmentPage from '@pages/Apartment/Apartment';
 import NotFoundPage from '@pages/NotFound/NotFound';
-
 import 'normalize.css';
-import './index.css';
+import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
