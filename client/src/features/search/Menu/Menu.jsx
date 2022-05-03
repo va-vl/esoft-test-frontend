@@ -1,12 +1,14 @@
 import * as React from 'react';
 //
 import { useLazySearchApartmentsQuery } from '@app/apiSlice';
-import { Button } from '@components';
+import { Button, ErrorMessage } from '@components';
 import {
   formReducer,
   initialState,
   setAreaKitchenMaxAC,
   setAreaKitchenMinAC,
+  setAreaLiveMaxAC,
+  setAreaLiveMinAC,
   setAreaTotalMaxAC,
   setAreaTotalMinAC,
   setFloorAC,
@@ -36,6 +38,10 @@ export const SearchMenu = () => {
   const [trigger, { data, isFetching, isUninitialized, isError, error }] =
     useLazySearchApartmentsQuery({});
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [state.sort, state.page]);
+
   const handleHidden = () => {
     setHidden(!hidden);
   };
@@ -58,6 +64,14 @@ export const SearchMenu = () => {
 
   const handleRooms = ({ target: { value } }) => {
     dispatch(setRoomsAC(value));
+  };
+
+  const handleAreaLiveMin = ({ target: { value } }) => {
+    dispatch(setAreaLiveMinAC(value));
+  };
+
+  const handleAreaLiveMax = ({ target: { value } }) => {
+    dispatch(setAreaLiveMaxAC(value));
   };
 
   const handleAreaKitchenMin = ({ target: { value } }) => {
@@ -98,13 +112,13 @@ export const SearchMenu = () => {
   } else if (isFetching) {
     content = <ResultsList data={undefined} />;
   } else if (isError) {
-    content = error.message;
-  } else if (data.length === 0) {
+    content = <ErrorMessage message={error.message} />;
+  } else if (data?.result?.length === 0) {
     content = 'По вашему запросу ничего не найдено';
   } else {
     content = (
       <>
-        <ResultsList data={data?.data} />
+        <ResultsList data={data?.result} />
         {data?.pages && (
           <Paginator
             page={state.page}
@@ -137,10 +151,10 @@ export const SearchMenu = () => {
         {!hidden && (
           <div className={styles.form_row}>
             <AreaLiveInputs
-              areaLiveMin={state.area_kitchen_min}
-              areaLiveMax={state.area_kitchen_max}
-              handleAreaLiveMin={handleAreaKitchenMin}
-              handleAreaLiveMax={handleAreaKitchenMax}
+              areaLiveMin={state.area_live_min}
+              areaLiveMax={state.area_live_max}
+              handleAreaLiveMin={handleAreaLiveMin}
+              handleAreaLiveMax={handleAreaLiveMax}
             />
             <AreaKitchenInputs
               areaKitchenMin={state.area_kitchen_min}

@@ -47,7 +47,7 @@ export class ApartmentsController {
             page: {
               type: 'number',
             },
-            data: {
+            result: {
               type: 'array',
               items: {
                 $ref: getSchemaPath(FilteredApartmentDTO),
@@ -90,5 +90,45 @@ export class ApartmentsController {
   })
   getApartmentById(@Param('id', ParseIntPipe) id: number) {
     return this.apartmentsService.getApartmentById(id);
+  }
+
+  @Get('/floor/:floor/pos_on_floor/:pos_on_floor')
+  @HttpCode(HttpStatus.OK)
+  @ApiParam({
+    name: 'floor',
+    schema: {
+      type: 'number',
+    },
+    description: 'этаж',
+  })
+  @ApiParam({
+    name: 'pos_on_floor',
+    schema: {
+      type: 'number',
+    },
+    description: 'позиция на этаже',
+  })
+  @ApiExtraModels(Apartment)
+  @ApiOkResponse({
+    description: 'Найденная квартира',
+    content: {
+      'application/json': {
+        schema: {
+          $ref: getSchemaPath(Apartment),
+        },
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'Некорректный запрос',
+  })
+  getApartmentByFloorAndPosition(
+    @Param('floor', ParseIntPipe) floor: number,
+    @Param('pos_on_floor', ParseIntPipe) pos_on_floor: number,
+  ) {
+    return this.apartmentsService.getApartmentByFloorAndPosition(
+      floor,
+      pos_on_floor,
+    );
   }
 }

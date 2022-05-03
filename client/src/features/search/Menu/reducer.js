@@ -56,7 +56,7 @@ export const formReducer = (state = initialState, { type, payload }) => {
         area_live_min: formatInputString(payload),
       };
     }
-    case 'SET/AREA_LIVING_MAX': {
+    case 'SET/AREA_LIVE_MAX': {
       return {
         ...state,
         area_live_max: formatInputString(payload),

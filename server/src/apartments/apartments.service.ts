@@ -53,14 +53,20 @@ export class ApartmentsService {
     });
 
     return {
-      data: result,
+      result,
       pages: Math.ceil(total / ITEMS_PER_PAGE),
       page,
     };
   }
 
-  async getApartmentById(id: number) {
+  getApartmentById(id: number) {
     return this.apartmentsRepository.findOne(id);
+  }
+
+  getApartmentByFloorAndPosition(floor: number, pos_on_floor: number) {
+    return this.apartmentsRepository.findOne({
+      where: { floor, pos_on_floor },
+    });
   }
 
   private assignArrayToWhereObject(

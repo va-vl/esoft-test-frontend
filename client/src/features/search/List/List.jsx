@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 //
-import { Card } from '../Card/Card';
+import { SearchItem } from '../Item/Item';
 import { SkeletonShape } from '@components';
 import styles from './List.module.scss';
 
@@ -22,14 +22,14 @@ export const ResultsList = ({ data }) => {
       <>
         {data.map((props) => (
           <li className={styles.item} key={props.id}>
-            <Card {...props} />
+            <SearchItem {...props} />
           </li>
         ))}
       </>
     );
   }
 
-  return <div className={styles.list}>{content}</div>;
+  return <ul className={styles.list}>{content}</ul>;
 };
 
 ResultsList.defaultProps = {

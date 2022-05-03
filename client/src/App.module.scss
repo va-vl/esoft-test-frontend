@@ -33,6 +33,27 @@
 .main {
   flex-grow: 1;
   flex-shrink: 0;
+
+  width: 80%;
+  margin: 0 auto;
+  max-width: $screen-width-xl;
+
+  @media screen and (max-width: $screen-width-sm) {
+    width: 95%;
+    max-width: none;
+  }
+
+  @media screen and (max-width: $screen-width-md) {
+    max-width: $screen-width-sm;
+  }
+
+  @media screen and (max-width: $screen-width-lg) {
+    max-width: $screen-width-md;
+  }
+
+  @media screen and (max-width: $screen-width-xl) {
+    max-width: $screen-width-lg;
+  }
 }
 
 .header {

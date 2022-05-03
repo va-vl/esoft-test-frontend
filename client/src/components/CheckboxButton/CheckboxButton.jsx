@@ -6,24 +6,36 @@ import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden';
 import styles from './CheckboxButton.module.scss';
 
 export const CheckboxButton = React.memo(
-  ({ id, label, value, name, onChange, checked }) => (
-    <label
-      htmlFor={id}
-      className={clsx(styles.checkbox, checked && styles.checkbox_checked)}
-    >
-      {label}
-      <VisuallyHidden>
-        <input
-          id={id}
-          value={value}
-          name={name}
-          type="checkbox"
-          checked={checked}
-          onChange={onChange}
-        />
-      </VisuallyHidden>
-    </label>
-  )
+  ({ id, label, value, name, onChange, checked }) => {
+    const ref = React.useRef(null);
+
+    const handleChange = (event) => {
+      onChange(event);
+      if (ref?.current) {
+        ref.current.blur();
+      }
+    };
+
+    return (
+      <label
+        htmlFor={id}
+        className={clsx(styles.checkbox, checked && styles.checkbox_checked)}
+      >
+        <span className={styles.label}>{label}</span>
+        <VisuallyHidden>
+          <input
+            ref={ref}
+            id={id}
+            value={value}
+            name={name}
+            type="checkbox"
+            checked={checked}
+            onChange={handleChange}
+          />
+        </VisuallyHidden>
+      </label>
+    );
+  }
 );
 
 CheckboxButton.displayName = 'CheckboxButton';

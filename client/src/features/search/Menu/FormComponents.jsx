@@ -114,15 +114,15 @@ export const AreaLiveInputs = ({
 }) => (
   <InputGroup legend={'Жилая площадь, м\u00b2'} stretchContent>
     <Input
-      id="areaKitchenMin"
-      name="areaKitchenMin"
+      id="areaLiveMin"
+      name="areaLiveMin"
       value={areaLiveMin}
       placeholder="От"
       onChange={handleAreaLiveMin}
     />
     <Input
-      id="areaKitchenMax"
-      name="areaKitchenMax"
+      id="areaLiveMax"
+      name="areaLiveMax"
       value={areaLiveMax}
       placeholder="До"
       onChange={handleAreaLiveMax}

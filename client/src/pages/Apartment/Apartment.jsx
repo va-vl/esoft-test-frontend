@@ -1,3 +1,9 @@
-const ApartmentPage = () => <h1>Apartment page</h1>;
+import { Dashboard } from '@features/apartment';
+
+const ApartmentPage = () => (
+  <>
+    <Dashboard />
+  </>
+);
 
 export default ApartmentPage;

@@ -11,7 +11,6 @@ module.exports = {
           '@app': './app',
           '@assets': './assets',
           '@components': './components',
-          '@containers': './containers',
           '@pages': './pages',
           '@features': './features',
           '@service': './service',

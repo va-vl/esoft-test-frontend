@@ -12,6 +12,7 @@ import 'normalize.css';
 import './index.scss';
 
 const HomePage = React.lazy(() => import('./pages/Home/Home'));
+const PlanPage = React.lazy(() => import('./pages/Plan/Plan'));
 const ApartmentPage = React.lazy(() => import('./pages/Apartment/Apartment'));
 const NotFoundPage = React.lazy(() => import('./pages/NotFound/NotFound'));
 
@@ -26,6 +27,7 @@ root.render(
             <Route path="/" element={<App />}>
               <Route index element={<HomePage />} />
               <Route path="/apartments/:id" element={<ApartmentPage />} />
+              <Route path="/plan" element={<PlanPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>

@@ -10,13 +10,12 @@ export const apiSlice = createApi({
       query: ({ queryString }) => `/apartments?${queryString}`,
     }),
     getApartment: build.query({
-      query: (id) => `/apartments:${id}`,
+      query: (id) => `/apartments/${id}`,
     }),
   }),
 });
 
 export const {
-  useSearchApartmentsQuery,
   useGetApartmentQuery,
   endpoints: {
     searchApartments: { useLazyQuery: useLazySearchApartmentsQuery },
