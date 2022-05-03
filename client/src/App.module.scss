@@ -1,0 +1,104 @@
+@use './style/variables.scss' as *;
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.2),
+      rgb(255, 255, 255) 60%
+    ),
+    url('./assets/hero-background.jpg');
+}
+
+.header,
+.main,
+.footer {
+  width: 100%;
+}
+
+.header,
+.footer {
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+.main {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.header {
+  padding: 0 1em;
+  background-color: rgba($color-background-decor, 30%);
+  border-bottom: 3px solid rgba($color-background-decor, 10%);
+  backdrop-filter: blur(10px);
+  
+  &_link {
+    display: inline-block;
+    padding: 1em;
+    color: $color-link;
+    text-decoration: none;
+
+    @media screen and (max-width: $screen-width-sm) {
+      padding: 0.75em;
+    }
+  
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      background-color: rgba($color-background-decor, 10%);
+    }
+  
+    &:active {
+      color: lighten($color-link, 10%);
+    }
+  }
+}
+
+.footer {
+  background-color: $color-background-footer;
+  color: whitesmoke;
+
+  &_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    opacity: 0.3;
+    padding: 2em 1em;
+
+
+    @media screen and (max-width: $screen-width-md) {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1em;
+    }
+  }
+
+  &_text {
+    font-family: 'Times New Roman', serif;
+    font-size: 0.9em;
+
+    @media screen and (max-width: $screen-width-md) {
+      width: 100%;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+  }
+
+  &_link {
+    display: inline-block;
+    margin-left: 1em;
+
+    @media screen and (max-width: $screen-width-md) {
+      margin: 0;
+    }
+  }
+}

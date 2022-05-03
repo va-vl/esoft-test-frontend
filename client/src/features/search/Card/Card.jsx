@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 //
+import { addSpacesToNumber } from '@service';
 import styles from './Card.module.scss';
 
 export const Card = ({ id, price, rooms, area_total, layout_image }) => (
@@ -11,16 +12,16 @@ export const Card = ({ id, price, rooms, area_total, layout_image }) => (
       alt={`Планировка ${rooms}-комнатной квартиры`}
     />
     <div className={styles.text}>
-      <p className={styles.price}>
-        {price} {'\u20BD'}
+      <p>
+        Цена: {addSpacesToNumber(Math.floor(price / 1000))} тыс. {'\u20BD'}
       </p>
       <p>
-        {area_total} {'м\u00b2'}
+        Общая площадь: {addSpacesToNumber(area_total)} {'м\u00b2'}
       </p>
       <p>Комнат: {rooms}</p>
+      <Link to={`/apartments/${id}`} className={styles.link}>
+        Подробнее
+      </Link>
     </div>
-    <Link to={`/apartments/${id}`} className={styles.link}>
-      Подробнее
-    </Link>
   </div>
 );

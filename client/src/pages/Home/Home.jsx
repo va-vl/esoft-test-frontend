@@ -1,13 +1,14 @@
 import * as React from 'react';
 //
+import { Container } from '@components';
 import { SearchMenu } from '@features/search';
 import styles from './Home.module.scss';
 
 const HomePage = () => (
-  <div className={styles.home}>
+  <Container>
     <h2 className={styles.heading}>Подобрать квартиру</h2>
     <SearchMenu />
-  </div>
+  </Container>
 );
 
 export default HomePage;

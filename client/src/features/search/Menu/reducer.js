@@ -6,6 +6,8 @@ export const initialState = {
   area_total_min: '',
   area_total_max: '',
   rooms: [],
+  area_live_min: '',
+  area_live_max: '',
   area_kitchen_min: '',
   area_kitchen_max: '',
   floor: [],
@@ -48,6 +50,18 @@ export const formReducer = (state = initialState, { type, payload }) => {
         rooms: newRooms,
       };
     }
+    case 'SET/AREA_LIVE_MIN': {
+      return {
+        ...state,
+        area_live_min: formatInputString(payload),
+      };
+    }
+    case 'SET/AREA_LIVING_MAX': {
+      return {
+        ...state,
+        area_live_max: formatInputString(payload),
+      };
+    }
     case 'SET/AREA_KITCHEN_MIN': {
       return {
         ...state,
@@ -70,8 +84,13 @@ export const formReducer = (state = initialState, { type, payload }) => {
       };
     }
     case 'SET/SORT': {
+      if (payload === state.sort) {
+        return state;
+      }
+
       return {
         ...state,
+        page: '1',
         sort: payload,
       };
     }
@@ -111,6 +130,16 @@ export const setRoomsAC = (payload) => ({
   payload,
 });
 
+export const setAreaLiveMinAC = (payload) => ({
+  type: 'SET/AREA_LIVE_MIN',
+  payload,
+});
+
+export const setAreaLiveMaxAC = (payload) => ({
+  type: 'SET/AREA_LIVE_MAX',
+  payload,
+});
+
 export const setAreaKitchenMinAC = (payload) => ({
   type: 'SET/AREA_KITCHEN_MIN',
   payload,
@@ -134,9 +163,4 @@ export const setSortAC = (payload) => ({
 export const setPageAC = (payload) => ({
   type: 'SET/PAGE',
   payload,
-});
-
-export const clearPageAC = () => ({
-  type: 'SET/PAGE',
-  payload: 1,
 });

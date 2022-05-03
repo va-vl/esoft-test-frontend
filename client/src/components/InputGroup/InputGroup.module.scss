@@ -4,6 +4,7 @@
   border: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .legend {
@@ -13,10 +14,15 @@
 .content {
   display: inline-flex;
   overflow: hidden;
+  justify-content: center;
   border-radius: 0.5rem;
-  border: 1px solid $color-border-checkbox;
-}
+  border: 1px solid rgba($color-border-checkbox, 0.3);
 
-.content > *:not(:last-child) {
-  border-right: 1px solid $color-border-checkbox;
+  &__stretched {
+    width: 100%;
+  }
+
+  & > *:not(:last-child) {
+    border-right: 1px solid rgba($color-border-checkbox, 0.3);
+  }
 }

@@ -8,7 +8,7 @@ export const PriceInputs = ({
   handlePriceMin,
   handlePriceMax,
 }) => (
-  <InputGroup legend={'Цена, \u20BD'}>
+  <InputGroup legend={'Цена, \u20BD'} stretchContent>
     <Input
       id="priceMin"
       name="priceMin"
@@ -39,7 +39,7 @@ export const AreaTotalInputs = ({
   handleAreaTotalMin,
   handleAreaTotalMax,
 }) => (
-  <InputGroup legend={'Общая площадь, м\u00b2'}>
+  <InputGroup legend={'Общая площадь, м\u00b2'} stretchContent>
     <Input
       id="areaTotalMin"
       name="areaTotalMin"
@@ -106,13 +106,44 @@ FloorInputs.propTypes = {
   handleFloor: PropTypes.func.isRequired,
 };
 
+export const AreaLiveInputs = ({
+  areaLiveMin,
+  areaLiveMax,
+  handleAreaLiveMin,
+  handleAreaLiveMax,
+}) => (
+  <InputGroup legend={'Жилая площадь, м\u00b2'} stretchContent>
+    <Input
+      id="areaKitchenMin"
+      name="areaKitchenMin"
+      value={areaLiveMin}
+      placeholder="От"
+      onChange={handleAreaLiveMin}
+    />
+    <Input
+      id="areaKitchenMax"
+      name="areaKitchenMax"
+      value={areaLiveMax}
+      placeholder="До"
+      onChange={handleAreaLiveMax}
+    />
+  </InputGroup>
+);
+
+AreaLiveInputs.propTypes = {
+  areaLiveMin: PropTypes.string.isRequired,
+  areaLiveMax: PropTypes.string.isRequired,
+  handleAreaLiveMin: PropTypes.func.isRequired,
+  handleAreaLiveMax: PropTypes.func.isRequired,
+};
+
 export const AreaKitchenInputs = ({
   areaKitchenMin,
   areaKitchenMax,
   handleAreaKitchenMin,
   handleAreaKitchenMax,
 }) => (
-  <InputGroup legend={'Площадь кухни, м\u00b2'}>
+  <InputGroup legend={'Площадь кухни, м\u00b2'} stretchContent>
     <Input
       id="areaKitchenMin"
       name="areaKitchenMin"

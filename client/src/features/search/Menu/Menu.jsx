@@ -16,9 +16,9 @@ import {
   setRoomsAC,
   setSortAC,
 } from './reducer';
-import { Card } from '../Card/Card';
 import {
   AreaKitchenInputs,
+  AreaLiveInputs,
   AreaTotalInputs,
   FloorInputs,
   PriceInputs,
@@ -26,6 +26,8 @@ import {
   SortSelect,
 } from './FormComponents';
 import { toQueryString } from './toQueryString';
+import { Paginator } from '../Paginator/Paginator';
+import { ResultsList } from '../List/List';
 import styles from './Menu.module.scss';
 
 export const SearchMenu = () => {
@@ -72,39 +74,44 @@ export const SearchMenu = () => {
 
   const handleSort = ({ target: { value } }) => {
     dispatch(setSortAC(value));
+    trigger(
+      { queryString: toQueryString({ ...state, page: '1', sort: value }) },
+      true
+    );
   };
 
-  const handlePage = ({ target: { value } }) => {
+  const handlePage = (value) => {
     dispatch(setPageAC(value));
-    trigger({ queryString: toQueryString(state) }, true);
+    trigger({ queryString: toQueryString({ ...state, page: value }) }, true);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    trigger({ queryString: toQueryString(state) }, true);
+    dispatch(setPageAC('1'));
+    trigger({ queryString: toQueryString({ ...state, page: '1' }) }, true);
   };
 
   let content;
 
   if (isUninitialized) {
-    content = <div>Введите запрос</div>;
+    content = 'Введите запрос';
   } else if (isFetching) {
-    content = <div>Загрузочный экран</div>;
+    content = <ResultsList data={undefined} />;
   } else if (isError) {
-    content = <div>{JSON.stringify(error)}</div>;
+    content = error.message;
+  } else if (data.length === 0) {
+    content = 'По вашему запросу ничего не найдено';
   } else {
     content = (
       <>
-        <div className={styles.container}>
-          {data.data.length
-            ? data.data.map((props) => (
-                <div key={props.id} className={styles.container_item}>
-                  <Card {...props} />
-                </div>
-              ))
-            : 'По запросу ничего не найдено'}
-        </div>
-        {`Страница: ${state.page} Страниц: ${data.pages}`}
+        <ResultsList data={data?.data} />
+        {data?.pages && (
+          <Paginator
+            page={state.page}
+            pages={data?.pages}
+            onChange={handlePage}
+          />
+        )}
       </>
     );
   }
@@ -112,7 +119,7 @@ export const SearchMenu = () => {
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.main}>
+        <div className={styles.form_row}>
           <PriceInputs
             priceMin={state.price_min}
             priceMax={state.price_max}
@@ -128,18 +135,23 @@ export const SearchMenu = () => {
           <RoomInputs rooms={state.rooms} handleRooms={handleRooms} />
         </div>
         {!hidden && (
-          <div className={styles.extra}>
-            <FloorInputs floor={state.floor} handleFloor={handleFloor} />
+          <div className={styles.form_row}>
+            <AreaLiveInputs
+              areaLiveMin={state.area_kitchen_min}
+              areaLiveMax={state.area_kitchen_max}
+              handleAreaLiveMin={handleAreaKitchenMin}
+              handleAreaLiveMax={handleAreaKitchenMax}
+            />
             <AreaKitchenInputs
               areaKitchenMin={state.area_kitchen_min}
               areaKitchenMax={state.area_kitchen_max}
               handleAreaKitchenMin={handleAreaKitchenMin}
               handleAreaKitchenMax={handleAreaKitchenMax}
             />
+            <FloorInputs floor={state.floor} handleFloor={handleFloor} />
           </div>
         )}
-        <div className={styles.controls}>
-          <SortSelect sort={state.sort} handleSort={handleSort} />
+        <div className={styles.form_control}>
           <Button onClick={handleHidden} className={styles.button__extra}>
             {hidden ? `Дополнительно` : 'Скрыть \u2A2F'}
           </Button>
@@ -148,7 +160,10 @@ export const SearchMenu = () => {
           </Button>
         </div>
       </form>
-      {content}
+      <div className={styles.sort}>
+        <SortSelect sort={state.sort} handleSort={handleSort} />
+      </div>
+      <div className={styles.content}>{content}</div>
     </>
   );
 };

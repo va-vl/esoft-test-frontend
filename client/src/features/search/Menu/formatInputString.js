@@ -6,16 +6,11 @@ export const formatInputString = (string) => {
     return string;
   }
 
-  const char = string[string.length - 1];
+  const numericValue = service.parseNumberWithSpaces(string);
 
-  if (char && !/[0-9]/.test(char)) {
+  if (isNaN(numericValue)) {
     return string.slice(0, -1);
   }
 
-  const numericValue = Math.min(
-    service.parseNumberWithSpaces(string),
-    MAX_INPUT_VALUE
-  );
-
-  return service.addSpacesToNumberString(`${numericValue}`);
+  return service.addSpacesToNumber(Math.min(numericValue, MAX_INPUT_VALUE));
 };

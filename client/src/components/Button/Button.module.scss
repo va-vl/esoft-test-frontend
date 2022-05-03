@@ -25,6 +25,12 @@
     transform: scale(0.97);
   }
 
+  &:disabled {
+    background-color: darken($color-background, 30%);
+    transform: none !important; 
+    cursor: auto;
+  }
+
   .spinner {
     margin: 0;
     width: 0.7em;
