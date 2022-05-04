@@ -4,9 +4,9 @@
 
 ## Демо
 
-Фронтенд: https://esoft-test-frontend.netlify.app
-Бэкенд: https://esoft-test-backend.herokuapp.com/api/
-Бэкенд документация: https://esoft-test-backend.herokuapp.com/doc
+- Фронтенд: https://esoft-test-frontend.netlify.app
+- Бэкенд: https://esoft-test-backend.herokuapp.com/api/
+- Бэкенд документация: https://esoft-test-backend.herokuapp.com/doc
 
 ## О проекте
 
