@@ -9,15 +9,22 @@ export const apiSlice = createApi({
     searchApartments: build.query({
       query: ({ queryString }) => `/apartments?${queryString}`,
     }),
-    getApartment: build.query({
+    getApartmentById: build.query({
       query: (id) => `/apartments/${id}`,
+    }),
+    getApartmentByFloorAndPosition: build.query({
+      query: ({ floor, position }) =>
+        `/apartments/floor/${floor}/pos_on_floor/${position}`,
     }),
   }),
 });
 
 export const {
-  useGetApartmentQuery,
+  useGetApartmentByIdQuery,
   endpoints: {
     searchApartments: { useLazyQuery: useLazySearchApartmentsQuery },
+    getApartmentByFloorAndPosition: {
+      useLazyQuery: useLazyGetApartmentByFloorAndPositionQuery,
+    },
   },
 } = apiSlice;

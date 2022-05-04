@@ -14,6 +14,12 @@
   background-color: rgba($color-background-decor, 0.1);
   backdrop-filter: blur(10px);
 
+  &__compact {
+    font-size: 1.5em;
+    padding: 0.5em;
+    margin-top: 0.5em auto;
+  }
+
   @media screen and (max-width: $screen-width-sm) {
     padding: 0.5em 1em;
     font-size: 1.5em;

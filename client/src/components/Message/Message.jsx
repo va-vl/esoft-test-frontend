@@ -22,7 +22,7 @@ Message.propTypes = {
 
 export const ErrorMessage = ({ message }) => (
   <Message
-    heading={message || 'Что-то пошло не так'}
+    heading={`Ошибка! ${message || 'Что-то пошло не так'}`}
     alt={'Ошибка'}
     image={errorSVG}
   />

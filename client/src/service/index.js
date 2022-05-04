@@ -6,7 +6,7 @@ export const addSpacesToNumber = (num) =>
 export const parseNumberWithSpaces = (string) => +string.split(' ').join('');
 
 export const formatPrice = (priceNumber) =>
-  `Цена: ${addSpacesToNumber(Math.floor(priceNumber / 1000))} тыс. \u20BD`;
+  `${addSpacesToNumber(Math.floor(priceNumber / 1000))} тыс. \u20BD`;
 
-export const formatArea = (areaNumber, title) =>
-  `${title}: ${addSpacesToNumber(areaNumber)} м\u00b2`;
+export const formatArea = (areaNumber) =>
+  `${addSpacesToNumber(areaNumber)} м\u00b2`;

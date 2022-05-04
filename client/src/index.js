@@ -3,18 +3,39 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 //
-import store from './app/store';
+import store from '@app/store';
+import { ReactComponent as Spinner } from '@assets/spinner.svg';
 import App from './App';
-// import HomePage from '@pages/Home/Home';
-// import ApartmentPage from '@pages/Apartment/Apartment';
-// import NotFoundPage from '@pages/NotFound/NotFound';
+import NotFoundPage from './pages/NotFound';
 import 'normalize.css';
 import './index.scss';
 
-const HomePage = React.lazy(() => import('./pages/Home/Home'));
-const PlanPage = React.lazy(() => import('./pages/Plan/Plan'));
-const ApartmentPage = React.lazy(() => import('./pages/Apartment/Apartment'));
-const NotFoundPage = React.lazy(() => import('./pages/NotFound/NotFound'));
+const MINIMUM_LOADING_DELAY = 1000;
+
+const HomePage = React.lazy(() =>
+  Promise.all([
+    import('./pages/Home'),
+    new Promise((resolve) => {
+      setTimeout(resolve, MINIMUM_LOADING_DELAY);
+    }),
+  ]).then(([moduleExports]) => moduleExports)
+);
+const PlanPage = React.lazy(() =>
+  Promise.all([
+    import('./pages/Plan'),
+    new Promise((resolve) => {
+      setTimeout(resolve, MINIMUM_LOADING_DELAY);
+    }),
+  ]).then(([moduleExports]) => moduleExports)
+);
+const ApartmentPage = React.lazy(() =>
+  Promise.all([
+    import('./pages/Apartment'),
+    new Promise((resolve) => {
+      setTimeout(resolve, MINIMUM_LOADING_DELAY);
+    }),
+  ]).then(([moduleExports]) => moduleExports)
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -22,7 +43,20 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <React.Suspense fallback={<div>загрузка</div>}>
+        <React.Suspense
+          fallback={
+            <div
+              style={{
+                height: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Spinner width={150} height={150} />
+            </div>
+          }
+        >
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<HomePage />} />

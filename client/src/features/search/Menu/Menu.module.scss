@@ -76,19 +76,8 @@
   text-align: center;
   backdrop-filter: blur(50px);
   background-color: rgba($color-background-decor, 30%);
-}
 
-.spinner {
-  width: 6em;
-  height: 6em;
-  
-  @media screen and (max-width: $screen-width-md) {
-    width: 4em;
-    height: 4px;
-  }
-
-  @media screen and (max-width: $screen-width-sm) {
-    width: 3em;
-    height: 3em;
+  @media screen and (max-width: $screen-width-lg) {
+    padding: 1em;
   }
 }

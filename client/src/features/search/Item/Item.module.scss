@@ -1,16 +1,40 @@
 @use '../../../style/variables.scss' as *;
 
-.card {
+.item {
   width: 100%;
-  min-width: 150px;
   border-radius: 0.5em;
   overflow: hidden;
   background-color: darken($color-background, 2%);
   box-shadow: 0 1em 1em -1em rgba(black, 0.5);
 
+  display: grid;
+  grid-template-columns: auto repeat(4, 1fr);
+  padding: 0 1em;
+  justify-items: center;
+  align-items: center;
+  transition: transform 100ms ease;
+
+
+  @media screen and (max-width: $screen-width-sm) {
+    grid-template-columns: repeat(5, auto);
+  }
+
   &:hover,
   &:focus-within {
-    transform: scale(1.05);
+    transform: scale(1.01);
+  }
+}
+
+.image {
+  margin-right: 1em;
+  width: 8em;
+
+  @media screen and (max-width: $screen-width-md) {
+    width: 6em;
+  }
+
+  @media screen and (max-width: $screen-width-sm) {
+    display: none;
   }
 }
 
@@ -18,19 +42,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 0.5em 1em;
 
-  p {
+  span {
+    display: block;
     width: 100%;
     margin: 0.25em 0;
-    text-align: left;
-  }
-
-  .link {
-    width: 100%;
-    color: $color-link-extra;
-    text-decoration: underline dotted;
-    text-align: right;
+    text-align: center;
   }
 }
 
+.link {
+  width: 100%;
+  color: $color-link-extra;
+  text-decoration: underline dotted;
+  text-align: center;
+}

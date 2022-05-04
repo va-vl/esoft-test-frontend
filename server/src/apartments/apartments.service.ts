@@ -20,7 +20,7 @@ export class ApartmentsService {
     private readonly apartmentsRepository: Repository<Apartment>,
   ) {}
 
-  async getAll(filterApartmentsDTO: FilterApartmentsDTO) {
+  async filterApartments(filterApartmentsDTO: FilterApartmentsDTO) {
     const { sort, page } = filterApartmentsDTO;
 
     const where: FindOneOptions<Apartment>['where'] = {};

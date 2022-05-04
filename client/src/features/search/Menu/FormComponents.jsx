@@ -75,6 +75,7 @@ export const RoomInputs = ({ rooms, handleRooms }) => (
         value={item}
         checked={rooms.includes(item)}
         onChange={handleRooms}
+        type="checkbox"
       />
     ))}
   </InputGroup>
@@ -96,6 +97,7 @@ export const FloorInputs = ({ floor, handleFloor }) => (
         value={item}
         checked={floor.includes(item)}
         onChange={handleFloor}
+        type="radio"
       />
     ))}
   </InputGroup>

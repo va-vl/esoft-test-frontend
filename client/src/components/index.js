@@ -6,3 +6,4 @@ export * from './OverlayScrollbar/OverlayScrollbar';
 export * from './Select/Select';
 export * from './SkeletonShape/SkeletonShape';
 export * from './Message/Message';
+export * from './PageLayout/PageLayout';

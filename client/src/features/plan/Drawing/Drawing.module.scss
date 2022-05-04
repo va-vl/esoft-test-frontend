@@ -1,0 +1,13 @@
+@use '../../../style/variables.scss' as *;
+
+.container {
+  width: 600px;
+
+  @media screen and (max-width: $screen-width-lg) {
+    width: 500px;
+  }
+
+  @media screen and (max-width: $screen-width-xs) {
+    width: 400px;
+  }
+}

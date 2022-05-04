@@ -10,7 +10,7 @@ export const ResultsList = ({ data }) => {
   if (data === undefined) {
     content = (
       <>
-        {[1, 2, 3].map((i) => (
+        {[1, 2, 3, 4].map((i) => (
           <li className={styles.item} key={i}>
             <SkeletonShape className={styles.skeleton} />
           </li>

@@ -6,21 +6,28 @@ import { formatArea, formatPrice } from '@service';
 
 export const SearchItem = React.memo(
   ({ id, price, rooms, area_total, layout_image }) => (
-    <div className={styles.card}>
+    <div className={styles.item}>
       <img
         className={styles.image}
         loading="lazy"
         src={layout_image}
         alt={`Планировка ${rooms}-комнатной квартиры`}
       />
-      <div className={styles.text}>
-        <p>{formatPrice(price)}</p>
-        <p>{formatArea(area_total, 'Общая площадь')}</p>
-        <p>Комнат: {rooms}</p>
-        <Link to={`/apartments/${id}`} className={styles.link}>
-          Подробнее
-        </Link>
-      </div>
+      <p className={styles.text}>
+        <span className={styles.text_description}>Цена:</span>
+        <span>{formatPrice(price)}</span>
+      </p>
+      <p className={styles.text}>
+        <span className={styles.text_description}>Общая пл.:</span>
+        <span>{formatArea(area_total)}</span>
+      </p>
+      <p className={styles.text}>
+        <span className={styles.text_description}>Комнат:</span>
+        <span>{rooms}</span>
+      </p>
+      <Link to={`/apartments/${id}`} className={styles.link}>
+        Подробнее
+      </Link>
     </div>
   )
 );

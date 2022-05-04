@@ -19,7 +19,7 @@ export const CheckboxButton = React.memo(
     return (
       <label
         htmlFor={id}
-        className={clsx(styles.checkbox, checked && styles.checkbox_checked)}
+        className={clsx(styles.input, checked && styles.input_checked)}
       >
         <span className={styles.label}>{label}</span>
         <VisuallyHidden>

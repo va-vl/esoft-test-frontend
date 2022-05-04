@@ -1,0 +1,59 @@
+@use '../../../style/variables.scss' as *;
+
+.menu {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  justify-items: start;
+  gap: 1em;
+  padding: 1em;
+
+  @media screen and (max-width: $screen-width-md) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 0 1em 1em;
+    justify-items: center;
+  }
+}
+
+.drawing {
+  padding: 1em;
+  grid-row: 1 / span 2;
+
+  @media screen and (max-width: $screen-width-md) {
+    grid-row: 3 / span 2;
+  }
+}
+
+.select {
+  width: fit-content;
+  padding: 1em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+
+  @media screen and (max-width: $screen-width-xs) {
+    width: 100%;
+  }
+}
+
+.hint,
+.content {
+  padding: 1em;
+}
+
+.content {
+  background-color: $color-background;
+  border-radius: 1em;
+  box-shadow: 0 1em 1em -1em rgba(black, 0.5);
+  align-self: start;
+  width: 100%;
+
+  @media screen and (max-width: $screen-width-md) {
+    align-self: center;
+  }
+}
+
+.skeleton {
+  padding-bottom: 40%;
+}

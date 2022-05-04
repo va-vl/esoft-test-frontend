@@ -62,7 +62,7 @@ export class ApartmentsController {
     description: 'Некорректный запрос',
   })
   filterApartments(@Query() query: FilterApartmentsDTO) {
-    return this.apartmentsService.getAll(query);
+    return this.apartmentsService.filterApartments(query);
   }
 
   @Get(':id')
