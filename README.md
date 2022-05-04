@@ -2,36 +2,49 @@
 
 Решение тестового задания на позицию Frontend Developer в компании Esoft.
 
+## Демо
+
+Фронтенд: https://esoft-test-frontend.netlify.app
+Бэкенд: https://esoft-test-backend.herokuapp.com/api/
+Бэкенд документация: https://esoft-test-backend.herokuapp.com/doc
+
 ## О проекте
 
-Приложение по поиску и сортировке квартир в секции многоквартирного дома.
+Приложение для фильтрации и сортировки квартир в секции многоквартирного дома. Фичи:
+
+- Вывод сокращённой информации о квартирах из базы данных по запросу. Запрос позволяет фильтровать данные о квартирах по стоимости, этажу, числу комнат и площадям, а также сортировать результаты по стоимости или общей площади. Форма для ввода требуемых жилой площади, площади кухни и допустимых этажей скрыта.
+- Фильтр поддерживает пагинацию;
+- Есть отдельная страница с информацией о квартире, а также страница с графическим выбором квартиры по плану секции;
+- Адаптивная вёрстка с использование SASS modules;
+- Собственный API написанный на NestJS;
 
 ## Стэк
 
 ### Клиент
 
-1. React;
-2. Craco-alias + Craco - библиотека для переопределения настроек CRA, используется для алиасов пути импорта;
-3. Redux + Redux Toolkit + RTK Query - запросы на сервер с кэшрованием и пагинацией, выбор необходимого этажа из элемента полченных;
-4. React Router - обеспечение роутинга для выбора между главной страницей, страницей с фильтрами, и страницей квартиры;
-5. PropTypes - для динамического тайп-чекинга;
-6. Clsx - управление классами;
-7. Sass - для переменных
-8. Konva + React-Konva - для работы с canvas
-9. Use-image - для работы с Konva
+1. **react**;
+2. [**craco**](https://github.com/gsoft-inc/craco) + [**craco-alias**](https://github.com/risenforces/craco-alias) (Apache) - библиотека для переопределения настроек CRA, здесь используется для поддержки алиасов импорта: `import ... from '@features/'`;
+3. [**@reduxjs/toolkit**](https://redux-toolkit.js.org/introduction/getting-started#an-existing-app) + (**react-redux**)[https://react-redux.js.org/introduction/getting-started] (MIT) - используется для работы с RTK Query, позволяет создавать ленивые запросы с кэшированием прямо в сторе ;
+4. [**react-router-dom**](https://reactrouter.com/docs/en/v6/getting-started/overview) (MIT) - обеспечение клиентского роутинга;
+5. [**prop-types**](https://www.npmjs.com/package/prop-types) (MIT) - динамический тайп-чекинг;
+6. [**clsx**](https://www.npmjs.com/package/clsx) (MIT) - управление классами;
+7. [**normalize.css**](https://necolas.github.io/normalize.css/) (MIT) - для нормализации настроек CSS по умолчанию;
+8. [**sass**](https://sass-scss.ru/install/) (MIT) - используется ради переменных (по большей части - только брейкпоинтов);
+9. [**konva**](https://konvajs.org) + [**react-konva**](https://konvajs.org/docs/react/index.html) (MIT) - библиотеки для работы с Canvas API, **react-konva** позволяет декларативно описывать состояние `<canvas>` и фигур на нём;
+10. [**use-image**](https://www.npmjs.com/package/use-image) (MIT) - хук для загрузки изображений, применяемый в работе с **konva**.
 
 ### Сервер
 
-1. NestJS - используется для создания CRUD сервиса. Дополнительные модули:
-   1.1. @nestjs/config - загрузка конфигурации и переменных окружения;
-   1.2. @nestjs/typeorm - модуль для работы с TypeORM;
-   1.3. @nestjs/swagger - модуль для привязки документации к NestJS-приложению;
-2. Helmet - используется для безопасности при обработке запросов;
-3. Class-validator, Class-transformer - для валидации типа данных в запросе;
-4. Docker - используется для запуска базы данных в контейнере;
-5. Pg - пакет для работы с PostgreSQL;
-6. TypeORM - пакет для работы с базами данных;
-7. Swagger-UI-Express - пакет для создания документации;
+1. **NestJS** - используется для создания CRUD сервиса. Дополнительные модули:
+   1.1. **@nestjs/config** - загрузка конфигурации и переменных окружения;
+   1.2. **@nestjs/typeorm** - для работы с **TypeORM**;
+   1.3. **@nestjs/swagger** - модуль для привязки документации к NestJS-приложению;
+2. [**helmet**](https://helmetjs.github.io) (MIT) - для безопасности при обработке запросов;
+3. [**class-validator**](https://github.com/typestack/class-validator) + [**class-transformer**](https://github.com/typestack/class-transformer) (MIT) - для валидации и первичной обработки данных с помощью декораторов;
+4. [**pg**](https://www.npmjs.com/package/pg) (MIT) - клиент для PostgreSQL;
+5. [**TypeORM**](https://typeorm.io) (MIT) - пакет для работы с базами данных;
+6. [**swagger-ui-express**](https://www.npmjs.com/package/swagger-ui-express) (MIT) - пакет для создания документации;
+7. [**docker**](https://www.docker.com) (Proprietary?) - для запуска базы данных в изолироавнной среде;
 
 ## Установка
 
@@ -47,6 +60,8 @@
 ## Запуск
 
 ### Клиент
+
+Переименовать `.env.example` в `.env` и запустить приложение командой `npm run start`. Рекомендуемую версию node см. в `./nvmrc`.
 
 ### Сервер
 
